@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ressources — L'Atelier des Nombres</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 26px;
+      border-radius: 50px;
+      border: 2px solid var(--gray-light);
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: var(--violet);
+      color: var(--white);
+      border-color: var(--violet);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .res-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      border: 1px solid var(--gray-light);
+      transition: all 0.2s;
+    }
+    .res-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--violet);
+    }
+    .res-icon {
+      width: 50px; height: 50px;
+      min-width: 50px;
+      border-radius: 12px;
+      background: var(--violet);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    .res-icon.correction { background: var(--violet-deep); }
+    .res-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .res-info p { font-size: 0.82rem; color: var(--gray); margin-bottom: 8px; }
+    .res-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--violet);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .res-download:hover { text-decoration: underline; }
+
+    .res-note {
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+      font-size: 0.92rem;
+      margin-top: 2rem;
+      background: var(--violet-wash);
+      border-radius: var(--radius);
+    }
+
+    /* ─── ENIGMES ─── */
+    .enigme-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .enigme {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray-light);
+      transition: box-shadow 0.3s;
+    }
+    .enigme:hover { box-shadow: var(--shadow-md); }
+    .enigme-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .enigme-header:hover { background: var(--violet-wash); }
+    .enigme-q {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .enigme-badge {
+      background: var(--violet);
+      color: var(--white);
+      width: 34px; height: 34px;
+      min-width: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .enigme-q span { font-weight: 600; font-size: 1rem; }
+    .enigme-toggle {
+      width: 34px; height: 34px;
+      min-width: 34px;
+      border-radius: 50%;
+      background: var(--violet-light);
+      color: var(--violet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+    .enigme.open .enigme-toggle {
+      transform: rotate(45deg);
+      background: var(--violet);
+      color: var(--white);
+    }
+    .enigme-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .enigme.open .enigme-answer { max-height: 300px; }
+    .enigme-answer-inner {
+      padding: 0 2rem 1.5rem;
+      color: var(--gray);
+      border-top: 1px solid var(--gray-light);
+      padding-top: 1.5rem;
+      margin: 0 1rem;
+    }
+    .enigme-answer-inner strong { color: var(--violet); }
+
+    @media (max-width: 600px) {
+      .enigme-header { padding: 1.2rem 1.2rem; }
+      .enigme-answer-inner { padding: 0 1.2rem 1.2rem; margin: 0 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><img src="logo.png" alt="Logo"><span>L'Atelier des Nombres</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html" class="active">Ressources</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label">Ressources</div>
+  <h1>Supports à <em>télécharger</em></h1>
+  <p>Corrections, fiches de cours et exercices classés par niveau. En accès libre.</p>
+</div>
+
+<!-- ═══ PDFs ═══ -->
+<section style="background:var(--cream);">
+  <div class="container">
+    <div class="tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('college')">Collège</button>
+      <button class="tab-btn" onclick="switchTab('lycee')">Lycée</button>
+      <button class="tab-btn" onclick="switchTab('superieur')">Supérieur</button>
+    </div>
+
+    <div class="tab-content active" id="tab-college">
+      <div class="res-grid">
+        <div class="res-card">
+          <div class="res-icon">📄</div>
+          <div class="res-info">
+            <h4>Fiche — Fractions et opérations</h4>
+            <p>Résumé de cours · Collège</p>
+            <a href="pdfs/college-fractions.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon correction">✏️</div>
+          <div class="res-info">
+            <h4>Correction — Brevet blanc n°1</h4>
+            <p>Correction détaillée · 3ᵉ</p>
+            <a href="pdfs/college-brevet-blanc-1.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+      </div>
+      <div class="res-note">📂 D'autres ressources arrivent bientôt. Revenez régulièrement !</div>
+    </div>
+
+    <div class="tab-content" id="tab-lycee">
+      <div class="res-grid">
+        <div class="res-card">
+          <div class="res-icon">📄</div>
+          <div class="res-info">
+            <h4>Fiche — Dérivation</h4>
+            <p>Résumé de cours · 1ère / Terminale</p>
+            <a href="pdfs/lycee-derivation.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon correction">✏️</div>
+          <div class="res-info">
+            <h4>Correction — Suites numériques</h4>
+            <p>Exercices corrigés · Terminale</p>
+            <a href="pdfs/lycee-suites.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon">📄</div>
+          <div class="res-info">
+            <h4>Fiche — Probabilités</h4>
+            <p>Lois discrètes et continues · Terminale</p>
+            <a href="pdfs/lycee-probabilites.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+      </div>
+      <div class="res-note">📂 D'autres ressources arrivent bientôt. Revenez régulièrement !</div>
+    </div>
+
+    <div class="tab-content" id="tab-superieur">
+      <div class="res-grid">
+        <div class="res-card">
+          <div class="res-icon">📄</div>
+          <div class="res-info">
+            <h4>Fiche — Algèbre linéaire</h4>
+            <p>Espaces vectoriels, applications linéaires · L1/L2</p>
+            <a href="pdfs/sup-algebre-lineaire.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+        <div class="res-card">
+          <div class="res-icon correction">✏️</div>
+          <div class="res-info">
+            <h4>Correction — Analyse réelle</h4>
+            <p>Suites, séries, convergence · L2</p>
+            <a href="pdfs/sup-analyse-reelle.pdf" class="res-download" download>⬇ Télécharger le PDF</a>
+          </div>
+        </div>
+      </div>
+      <div class="res-note">📂 D'autres ressources arrivent bientôt. Revenez régulièrement !</div>
+    </div>
+  </div>
+</section>
+
+<div class="infinity-divider">∞ ∞ ∞</div>
+
+<!-- ═══ ÉNIGMES ═══ -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Énigmes</div>
+      <h2 class="section-title">Gymnastique mathématique</h2>
+      <p class="section-desc">Testez votre logique ! Cliquez pour révéler la solution.</p>
+    </div>
+    <div class="enigme-list">
+      <div class="enigme reveal">
+        <div class="enigme-header" onclick="this.closest('.enigme').classList.toggle('open')">
+          <div class="enigme-q">
+            <div class="enigme-badge">1</div>
+            <span>J'ai le double de l'âge que vous aviez quand j'avais votre âge. Nos âges totalisent 63 ans.</span>
+          </div>
+          <div class="enigme-toggle">+</div>
+        </div>
+        <div class="enigme-answer">
+          <div class="enigme-answer-inner">
+            <strong>Réponse :</strong> J'ai 36 ans et vous avez 27 ans.<br>
+            <em>La différence d'âge est x − y. Quand j'avais y ans, vous aviez 2y − x. On pose x = 2(2y − x), soit 3x = 4y. Avec x + y = 63 : x = 36, y = 27.</em>
+          </div>
+        </div>
+      </div>
+      <div class="enigme reveal">
+        <div class="enigme-header" onclick="this.closest('.enigme').classList.toggle('open')">
+          <div class="enigme-q">
+            <div class="enigme-badge">2</div>
+            <span>Combien de fois peut-on soustraire 5 de 25 ?</span>
+          </div>
+          <div class="enigme-toggle">+</div>
+        </div>
+        <div class="enigme-answer">
+          <div class="enigme-answer-inner">
+            <strong>Réponse :</strong> Une seule fois !<br>
+            <em>Après la première soustraction, il reste 20 — on ne soustrait plus de 25. Un piège de logique, pas de calcul.</em>
+          </div>
+        </div>
+      </div>
+      <div class="enigme reveal">
+        <div class="enigme-header" onclick="this.closest('.enigme').classList.toggle('open')">
+          <div class="enigme-q">
+            <div class="enigme-badge">3</div>
+            <span>Un escargot escalade un mur de 10 m. Il monte de 3 m le jour et redescend de 2 m la nuit.</span>
+          </div>
+          <div class="enigme-toggle">+</div>
+        </div>
+        <div class="enigme-answer">
+          <div class="enigme-answer-inner">
+            <strong>Réponse :</strong> 8 jours.<br>
+            <em>Gain net : 1 m/jour. Après 7 jours = 7 m. Le 8ᵉ jour il monte de 3 m → 10 m, arrivé avant la nuit.</em>
+          </div>
+        </div>
+      </div>
+      <div class="enigme reveal">
+        <div class="enigme-header" onclick="this.closest('.enigme').classList.toggle('open')">
+          <div class="enigme-q">
+            <div class="enigme-badge">4</div>
+            <span>Si 1 = 5, 2 = 25, 3 = 125, 4 = 625, alors 5 = ?</span>
+          </div>
+          <div class="enigme-toggle">+</div>
+        </div>
+        <div class="enigme-answer">
+          <div class="enigme-answer-inner">
+            <strong>Réponse :</strong> 5 = 1.<br>
+            <em>La première ligne dit 1 = 5. Par symétrie de l'égalité : 5 = 1.</em>
+          </div>
+        </div>
+      </div>
+      <div class="enigme reveal">
+        <div class="enigme-header" onclick="this.closest('.enigme').classList.toggle('open')">
+          <div class="enigme-q">
+            <div class="enigme-badge">5</div>
+            <span>Trois interrupteurs, trois ampoules dans une autre pièce. Vous n'entrez qu'une fois.</span>
+          </div>
+          <div class="enigme-toggle">+</div>
+        </div>
+        <div class="enigme-answer">
+          <div class="enigme-answer-inner">
+            <strong>Réponse :</strong> Allumez le 1er pendant 5 min, éteignez-le, allumez le 2ᵉ, entrez.<br>
+            <em>Allumée = 2ᵉ. Éteinte + chaude = 1er. Éteinte + froide = 3ᵉ. On utilise la chaleur comme info supplémentaire !</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="logo.png" alt="Logo">L'Atelier des Nombres</div>
+    <ul class="footer-links">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="font-size:0.82rem;">© 2025 L'Atelier des Nombres</div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }}), { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+</script>
+</body>
+</html>

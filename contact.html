@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — L'Atelier des Nombres</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-deep) 100%);
+      border-radius: 24px;
+      padding: 3.5rem 2.5rem;
+      color: var(--white);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-card::before {
+      content: '∞';
+      position: absolute;
+      bottom: -30px; right: -10px;
+      font-size: 10rem;
+      opacity: 0.06;
+      font-family: 'DM Serif Display', serif;
+      pointer-events: none;
+    }
+    .cta-card-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .cta-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .cta-card p {
+      opacity: 0.85;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      max-width: 340px;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--violet);
+      font-size: 1rem;
+      padding: 16px 36px;
+    }
+    .btn-white:hover {
+      background: var(--violet-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .info-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .info-card > p {
+      color: var(--gray);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+    .methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .method-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--violet-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .method-text strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    .method-text small {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+    .method-text a {
+      color: var(--violet);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .method-text a:hover { text-decoration: underline; }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid var(--gray-light);
+    }
+    .faq-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .faq-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+    .faq-card a { color: var(--violet); }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><img src="logo.png" alt="Logo"><span>L'Atelier des Nombres</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html" class="nav-cta active">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label">Contact</div>
+  <h1>Demandez votre <em>devis</em></h1>
+  <p>Remplissez notre formulaire en ligne et nous vous recontacterons sous 48 h avec une proposition adaptée.</p>
+</div>
+
+<section style="background:var(--cream);">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="cta-card reveal">
+        <div class="cta-card-icon">✉️</div>
+        <h3>Formulaire de devis</h3>
+        <p>Décrivez vos besoins en quelques clics. C'est gratuit, rapide et sans engagement.</p>
+        <!-- ══════════════════════════════════════
+             REMPLACEZ le lien ci-dessous par votre 
+             vrai lien Google Form
+             ══════════════════════════════════════ -->
+        <a href="https://forms.gle/VOTRE_LIEN_ICI" target="_blank" rel="noopener" class="btn btn-white">
+          Remplir le formulaire →
+        </a>
+      </div>
+
+      <div class="info-card reveal">
+        <h3>Autres moyens de nous joindre</h3>
+        <p>Vous pouvez aussi nous contacter directement par email ou sur les réseaux.</p>
+        <div class="methods">
+          <div class="method">
+            <div class="method-icon">📧</div>
+            <div class="method-text">
+              <strong>Email</strong>
+              <small><a href="mailto:contact@atelierdesnombres.fr">contact@atelierdesnombres.fr</a></small>
+            </div>
+          </div>
+          <div class="method">
+            <div class="method-icon">📱</div>
+            <div class="method-text">
+              <strong>Instagram</strong>
+              <small><a href="https://instagram.com/maths.france" target="_blank" rel="noopener">@maths.france</a></small>
+            </div>
+          </div>
+          <div class="method">
+            <div class="method-icon">📍</div>
+            <div class="method-text">
+              <strong>Zone d'intervention</strong>
+              <small>Île-de-France · En visio partout en France</small>
+            </div>
+          </div>
+          <div class="method">
+            <div class="method-icon">⏰</div>
+            <div class="method-text">
+              <strong>Réponse sous 48 h</strong>
+              <small>Devis gratuit et sans engagement</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="infinity-divider">∞ ∞ ∞</div>
+
+<section style="background:var(--white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Questions fréquentes</div>
+      <h2 class="section-title">Avant de nous contacter</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-card reveal">
+        <h4>Quels niveaux couvrez-vous ?</h4>
+        <p>Du collège (6ᵉ) aux études supérieures (licence, prépa). Consultez notre page <a href="cours.html">Cours</a> pour le détail.</p>
+      </div>
+      <div class="faq-card reveal">
+        <h4>Cours en présentiel ou en visio ?</h4>
+        <p>Les deux ! En présentiel en Île-de-France, et en visio partout en France avec un tableau partagé.</p>
+      </div>
+      <div class="faq-card reveal">
+        <h4>Comment se passe le premier cours ?</h4>
+        <p>C'est un diagnostic : on évalue le niveau, les points forts et les lacunes pour construire un plan personnalisé.</p>
+      </div>
+      <div class="faq-card reveal">
+        <h4>Quel est le tarif ?</h4>
+        <p>Le tarif dépend du niveau et de la fréquence. Remplissez le formulaire et recevez un devis adapté sous 48 h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="logo.png" alt="Logo">L'Atelier des Nombres</div>
+    <ul class="footer-links">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="font-size:0.82rem;">© 2025 L'Atelier des Nombres</div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }}), { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qui sommes-nous — L'Atelier des Nombres</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nous-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .nous-text h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .nous-text p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-size: 1.02rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .value-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid var(--gray-light);
+      transition: all 0.3s;
+    }
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--violet);
+    }
+    .value-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--violet-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .value-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .value-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    /* ─── EQUIPE ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .team-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid var(--gray-light);
+      transition: all 0.3s;
+    }
+    .team-card:hover {
+      border-color: var(--violet);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .team-photo {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--violet);
+      box-shadow: 0 6px 20px rgba(108,45,199,0.15);
+      margin-bottom: 1.2rem;
+    }
+    .team-avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--violet-light), var(--violet));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin: 0 auto 1.2rem;
+    }
+    .team-card h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+    .team-role {
+      color: var(--violet);
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+    .team-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .approach-card {
+      background: var(--violet-wash);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .approach-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: rgba(108,45,199,0.12);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .approach-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .approach-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    @media (max-width: 900px) {
+      .nous-intro { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><img src="logo.png" alt="Logo"><span>L'Atelier des Nombres</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="nous.html" class="active">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label">Qui sommes-nous</div>
+  <h1>Une équipe au service<br>des <em>mathématiques</em></h1>
+  <p>L'Atelier des Nombres réunit des passionnés qui partagent une même conviction : chaque élève peut réussir en maths.</p>
+</div>
+
+<!-- ═══ INTRO ═══ -->
+<section style="background:var(--cream);">
+  <div class="container">
+    <div class="nous-intro">
+      <div class="nous-text reveal">
+        <h3>Notre vision</h3>
+        <p>
+          L'Atelier des Nombres est né d'une conviction simple : les mathématiques ne sont pas réservées à une élite. 
+          Avec la bonne approche et le bon accompagnement, chaque élève peut progresser, comprendre 
+          et même prendre plaisir à raisonner.
+        </p>
+        <p>
+          Notre équipe réunit des enseignants aux parcours complémentaires — de la recherche fondamentale 
+          à l'enseignement en classe — pour offrir un suivi personnalisé et exigeant.
+        </p>
+        <p>
+          Que ce soit en présentiel ou en visio, chaque cours est pensé comme un atelier : 
+          un espace de travail où l'on construit, pas à pas, la compréhension et la confiance.
+        </p>
+      </div>
+      <div class="values-grid reveal">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h4>Sur-mesure</h4>
+          <p>Chaque élève a son rythme et ses objectifs. Nos cours s'y adaptent entièrement.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🧩</div>
+          <h4>Comprendre d'abord</h4>
+          <p>Pas de recettes : on construit le « pourquoi » avant le « comment ».</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💡</div>
+          <h4>Confiance</h4>
+          <p>Redonner le goût des maths à ceux qui pensent ne pas être faits pour ça.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📐</div>
+          <h4>Rigueur bienveillante</h4>
+          <p>Exigence et encouragement vont de pair pour progresser durablement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="infinity-divider">∞ ∞ ∞</div>
+
+<!-- ═══ EQUIPE ═══ -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">L'équipe</div>
+      <h2 class="section-title">Les visages de l'Atelier</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img src="Photo_pro_2.png" alt="Mehdi Nedjar" class="team-photo">
+        <h4>Mehdi Nedjar</h4>
+        <div class="team-role">Fondateur · PhD Applicant</div>
+        <p>Transport optimal, analyse fonctionnelle. M2 MMMEF à Paris 1 Panthéon-Sorbonne.</p>
+        <a href="fondateur.html" class="btn btn-outline btn-sm">Voir le profil →</a>
+      </div>
+      <!-- 
+        ═══ AJOUTER D'AUTRES PROFESSEURS ICI ═══
+        Copiez le bloc .team-card et remplacez les infos.
+        Utilisez <img class="team-photo"> pour une photo
+        ou <div class="team-avatar">X</div> pour une initiale.
+      -->
+      <div class="team-card reveal">
+        <div class="team-avatar">+</div>
+        <h4>Rejoignez l'aventure</h4>
+        <div class="team-role">Professeur·e de mathématiques</div>
+        <p>Vous êtes passionné·e par la transmission des maths et partagez nos valeurs ?</p>
+        <a href="contact.html" class="btn btn-outline btn-sm">Nous écrire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="infinity-divider">∞ ∞ ∞</div>
+
+<!-- ═══ APPROCHE ═══ -->
+<section style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Notre méthode</div>
+      <h2 class="section-title">Comment ça marche ?</h2>
+    </div>
+    <div class="approach-grid reveal">
+      <div class="approach-card">
+        <div class="approach-num">01</div>
+        <h4>Prise de contact</h4>
+        <p>Vous décrivez vos besoins via notre formulaire. Nous vous recontactons sous 48 h avec un devis adapté.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-num">02</div>
+        <h4>Diagnostic</h4>
+        <p>Un premier cours permet d'évaluer le niveau, les lacunes et les points forts pour construire un plan personnalisé.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-num">03</div>
+        <h4>Accompagnement</h4>
+        <p>Des séances régulières avec des supports dédiés, un suivi des progrès et une communication transparente avec les parents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="logo.png" alt="Logo">L'Atelier des Nombres</div>
+    <ul class="footer-links">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="font-size:0.82rem;">© 2025 L'Atelier des Nombres</div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }}), { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

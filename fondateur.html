@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehdi Nedjar — Fondateur · L'Atelier des Nombres</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fondateur-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    .profile-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-light);
+    }
+    .profile-photo {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--violet);
+      box-shadow: 0 8px 30px rgba(108,45,199,0.15);
+      margin-bottom: 1.5rem;
+    }
+    .profile-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+    .profile-role {
+      color: var(--violet);
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 0.75rem;
+    }
+    .profile-tagline {
+      color: var(--gray);
+      font-size: 0.88rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+    .profile-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .profile-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .profile-link.primary {
+      background: var(--violet);
+      color: var(--white);
+    }
+    .profile-link.primary:hover {
+      background: var(--violet-deep);
+      transform: translateY(-1px);
+    }
+    .profile-link.ghost {
+      background: var(--violet-light);
+      color: var(--violet);
+    }
+    .profile-link.ghost:hover {
+      background: var(--violet);
+      color: var(--white);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .content-block {
+      margin-bottom: 3rem;
+    }
+    .content-block-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+    .content-block-title::before {
+      content: '';
+      width: 4px; height: 26px;
+      border-radius: 2px;
+      background: var(--violet);
+      flex-shrink: 0;
+    }
+    .content-block p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .content-block p strong {
+      color: var(--ink);
+    }
+
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+    .tag {
+      background: var(--violet-light);
+      color: var(--violet-deep);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px; top: 6px; bottom: 6px;
+      width: 2px;
+      background: var(--violet-light);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 1.8rem;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -28px; top: 7px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--violet);
+      border: 3px solid var(--violet-light);
+    }
+    .tl-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--violet);
+      letter-spacing: 0.03em;
+    }
+    .tl-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 3px 0;
+    }
+    .tl-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    /* ─── ENGAGEMENT ─── */
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .engagement-card {
+      background: var(--violet-wash);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .engagement-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+    .engagement-card p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .fondateur-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar { position: static; }
+      .profile-card { max-width: 400px; margin: 0 auto; }
+      .engagement-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><img src="logo.png" alt="Logo"><span>L'Atelier des Nombres</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html" class="active">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label">Le fondateur</div>
+  <h1>Mehdi <em>Nedjar</em></h1>
+  <p>Mathématicien en devenir, enseignant par vocation.</p>
+</div>
+
+<section style="background:var(--cream);">
+  <div class="container">
+    <div class="fondateur-layout">
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="profile-card reveal">
+          <img src="Photo_pro_2.png" alt="Mehdi Nedjar" class="profile-photo">
+          <h2>Mehdi Nedjar</h2>
+          <div class="profile-role">PhD Applicant — Mathematics</div>
+          <div class="profile-tagline">« Rendre l'infini accessible, un théorème à la fois. »</div>
+          <div class="profile-links">
+            <a href="CV_MEHDI_NEDJAR_2025.pdf" class="profile-link primary" download>⬇ Télécharger mon CV</a>
+            <a href="https://instagram.com/maths.france" target="_blank" rel="noopener" class="profile-link ghost">📱 @maths.france</a>
+            <a href="https://github.com/mehdinedjar" target="_blank" rel="noopener" class="profile-link ghost">💻 GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div>
+        <div class="content-block reveal">
+          <div class="content-block-title">Mes motivations mathématiques</div>
+          <p>
+            Les mathématiques m'ont toujours fasciné par leur capacité à donner forme à l'abstrait. 
+            Ce qui m'anime, c'est cette tension entre la beauté pure d'une démonstration et son pouvoir 
+            d'application — le moment où une structure théorique éclaire un problème concret.
+          </p>
+          <p>
+            Mon travail de recherche porte sur le <strong>transport optimal</strong>, un domaine à la croisée 
+            de l'analyse fonctionnelle, du calcul des variations et des probabilités. J'étudie en particulier les 
+            formulations dynamiques et multimargales : comment déplacer plusieurs distributions de masse 
+            de manière optimale, et sous quelles conditions ces problèmes admettent des solutions 
+            dans des espaces généraux.
+          </p>
+          <p>
+            C'est cette même envie de comprendre en profondeur que je cherche à transmettre à mes élèves : 
+            ne pas se contenter d'appliquer une formule, mais saisir l'idée qui se cache derrière.
+          </p>
+          <div class="research-tags">
+            <span class="tag">Transport optimal</span>
+            <span class="tag">Calcul des variations</span>
+            <span class="tag">Analyse fonctionnelle</span>
+            <span class="tag">Probabilités</span>
+            <span class="tag">Espaces métriques</span>
+            <span class="tag">Dualité de Kantorovich</span>
+          </div>
+        </div>
+
+        <div class="content-block reveal">
+          <div class="content-block-title">Parcours académique</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-year">2025 – 2026</div>
+              <div class="tl-title">M2 MMMEF — Université Paris 1 Panthéon-Sorbonne</div>
+              <div class="tl-desc">Optimisation, réseaux de neurones, machine learning, théorie du point fixe, probabilités avancées.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2024 – 2025</div>
+              <div class="tl-title">M1 Mathématiques Appliquées — Paris 1 Panthéon-Sorbonne</div>
+              <div class="tl-desc">Probabilités, statistiques, analyse fonctionnelle, optimisation, équations différentielles.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2023 – 2024</div>
+              <div class="tl-title">L3 Mathématiques Pures — Université Paris Cité</div>
+              <div class="tl-desc">Intégration et Fourier, topologie, analyse complexe, algèbre, calcul différentiel.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2020 – 2023</div>
+              <div class="tl-title">Licence MIASHS — Paris 1 Panthéon-Sorbonne</div>
+              <div class="tl-desc">Théorie de la mesure, probabilités, optimisation, informatique, économie mathématique.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2019 – 2020</div>
+              <div class="tl-title">CPGE ECS — Lycée La Bruyère, Versailles</div>
+              <div class="tl-desc">Classes préparatoires aux Grandes Écoles, voie économique.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block reveal">
+          <div class="content-block-title">Recherche en cours</div>
+          <p>
+            Mon mémoire de Master 2, actuellement en cours, porte sur les <strong>formulations dynamiques 
+            et le transport optimal multimarginal</strong>. L'objectif est d'identifier les conditions minimales 
+            de tension et de coercivité qui garantissent l'existence et l'équivalence entre couplages 
+            multimargaux statiques et formulations dynamiques sur des espaces généraux.
+          </p>
+          <p>
+            Ce travail s'appuie sur les travaux de métrisation des espaces métriques probabilistes (Bachir–Nazaret), 
+            le transport optimal pour le déterminant (Carlier–Nazaret), et des contributions récentes 
+            présentées au Fields Institute sur le transport multimarginal dynamique.
+          </p>
+        </div>
+
+        <div class="content-block reveal">
+          <div class="content-block-title">Expérience d'enseignement</div>
+          <p>
+            J'enseigne les mathématiques depuis 2022 — d'abord chez Partadom et Complétude en tant que 
+            tuteur (du collège au lycée, filière avancée incluse, ~15 h/semaine), puis en tant que fondateur 
+            de L'Atelier des Nombres où je conçois des supports pédagogiques en LaTeX, anime une communauté 
+            en ligne et prépare aux examens.
+          </p>
+        </div>
+
+        <div class="content-block reveal">
+          <div class="content-block-title">Engagements</div>
+          <div class="engagement-grid">
+            <div class="engagement-card">
+              <h4>📖 Ma1son</h4>
+              <p>Projet de vulgarisation mathématique pour les lycéens.</p>
+            </div>
+            <div class="engagement-card">
+              <h4>🤝 Article 1</h4>
+              <p>Membre de l'assemblée générale pour l'égalité des chances.</p>
+            </div>
+            <div class="engagement-card">
+              <h4>🍴 LaCop1ne</h4>
+              <p>Coordinateur au restaurant solidaire.</p>
+            </div>
+            <div class="engagement-card">
+              <h4>🏆 Cercle des Économistes</h4>
+              <p>Sélectionné pour « La Parole aux 18–28 », Rencontres d'Aix. Co-auteur chez Nathan.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="logo.png" alt="Logo">L'Atelier des Nombres</div>
+    <ul class="footer-links">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="font-size:0.82rem;">© 2025 L'Atelier des Nombres</div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }}), { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

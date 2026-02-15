@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos cours — L'Atelier des Nombres</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .level-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid var(--gray-light);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .level-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--violet);
+    }
+    .level-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--violet);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .level-card:hover::before { transform: scaleX(1); }
+    .level-emoji { font-size: 3rem; margin-bottom: 1.2rem; }
+    .level-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .level-card p {
+      color: var(--gray);
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+    }
+    .level-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+    }
+    .level-topics span {
+      background: var(--violet-light);
+      color: var(--violet-deep);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .tip-card {
+      background: var(--violet-wash);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+    .tip-card:hover { transform: translateY(-4px); }
+    .tip-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: rgba(108,45,199,0.12);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .tip-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .tip-card p {
+      color: var(--gray);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .levels-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><img src="logo.png" alt="Logo"><span>L'Atelier des Nombres</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html" class="active">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label">Nos cours</div>
+  <h1>Un accompagnement<br>à <em>chaque étape</em></h1>
+  <p>Du collège aux études supérieures, des cours adaptés à chaque programme et chaque ambition.</p>
+</div>
+
+<!-- ═══ NIVEAUX ═══ -->
+<section style="background:var(--cream);">
+  <div class="container">
+    <div class="levels-grid">
+      <div class="level-card reveal">
+        <div class="level-emoji">📘</div>
+        <h3>Collège</h3>
+        <p>Construire des bases solides en calcul, géométrie et raisonnement logique dès la 6ᵉ.</p>
+        <div class="level-topics">
+          <span>Arithmétique</span>
+          <span>Géométrie</span>
+          <span>Fractions</span>
+          <span>Équations</span>
+          <span>Proportionnalité</span>
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-emoji">📗</div>
+        <h3>Lycée</h3>
+        <p>Maîtriser les concepts clés du programme et préparer sereinement les épreuves du bac.</p>
+        <div class="level-topics">
+          <span>Fonctions</span>
+          <span>Suites</span>
+          <span>Probabilités</span>
+          <span>Vecteurs</span>
+          <span>Dérivation</span>
+          <span>Intégration</span>
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-emoji">📕</div>
+        <h3>Supérieur</h3>
+        <p>Approfondir l'analyse, l'algèbre et les structures mathématiques avancées.</p>
+        <div class="level-topics">
+          <span>Algèbre linéaire</span>
+          <span>Analyse réelle</span>
+          <span>Topologie</span>
+          <span>Probabilités</span>
+          <span>Optimisation</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:3rem;" class="reveal">
+      <a href="contact.html" class="btn btn-primary">Demander un devis adapté →</a>
+    </div>
+  </div>
+</section>
+
+<div class="infinity-divider">∞ ∞ ∞</div>
+
+<!-- ═══ CONSEILS ═══ -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Conseils pédagogiques</div>
+      <h2 class="section-title">Progresser en mathématiques</h2>
+      <p class="section-desc">Quelques clés essentielles pour transformer sa relation avec les maths.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card reveal">
+        <div class="tip-num">01</div>
+        <h3>Comprendre avant d'appliquer</h3>
+        <p>Ne sautez jamais l'étape de la compréhension. Avant de résoudre un exercice, reformulez le théorème avec vos propres mots. Si vous ne pouvez pas l'expliquer simplement, c'est que vous ne l'avez pas encore compris.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">02</div>
+        <h3>S'entraîner régulièrement</h3>
+        <p>Les maths sont comme un muscle : la régularité prime sur l'intensité. Mieux vaut 20 minutes par jour que 3 heures la veille du contrôle. La répétition espacée consolide les connaissances.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">03</div>
+        <h3>Oser se tromper</h3>
+        <p>L'erreur est le meilleur professeur. Analysez vos fautes : manque de compréhension, oubli de formule, ou erreur de calcul ? Chaque erreur identifiée est un pas en avant.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">04</div>
+        <h3>Apprendre le langage mathématique</h3>
+        <p>Soignez la rédaction. Maîtriser les connecteurs logiques (« donc », « car », « soit ») et la rigueur de l'écriture, c'est déjà résoudre la moitié du problème.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">05</div>
+        <h3>Faire le lien entre les chapitres</h3>
+        <p>Les maths ne sont pas des îlots isolés. Les fonctions servent en probabilités, l'algèbre éclaire la géométrie. Cherchez toujours les connexions.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">06</div>
+        <h3>Poser des questions</h3>
+        <p>Il n'y a pas de question bête. Si quelque chose n'est pas clair, c'est souvent parce qu'une notion antérieure mérite d'être revisitée. Poser des questions, c'est prendre le contrôle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="logo.png" alt="Logo">L'Atelier des Nombres</div>
+    <ul class="footer-links">
+      <li><a href="nous.html">Nous</a></li>
+      <li><a href="fondateur.html">Fondateur</a></li>
+      <li><a href="cours.html">Cours</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="font-size:0.82rem;">© 2025 L'Atelier des Nombres</div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }}), { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
