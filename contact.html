@@ -17,10 +17,10 @@
     }
 
     .cta-card {
-      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-deep) 100%);
+      background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
       border-radius: 24px;
       padding: 3.5rem 2.5rem;
-      color: var(--white);
+      color: #F1F1F4;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -60,13 +60,13 @@
       max-width: 340px;
     }
     .btn-white {
-      background: var(--white);
-      color: var(--violet);
+      background: #F1F1F4;
+      color: #5B21B6;
       font-size: 1rem;
       padding: 16px 36px;
     }
     .btn-white:hover {
-      background: var(--violet-light);
+      background: #FFFFFF;
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
@@ -198,7 +198,7 @@
             <div class="method-icon">📧</div>
             <div class="method-text">
               <strong>Email</strong>
-              <small><a href="mailto:contact@atelierdesnombres.fr">contact@atelierdesnombres.fr</a></small>
+              <small><a href="/cdn-cgi/l/email-protection#f2919d9c86939186b29386979e9b97809697819c9d9f90809781dc9480"><span class="__cf_email__" data-cfemail="2b4844455f4a485f6b4a5f4e47424e594f4e5845444649594e58054d59">[email&#160;protected]</span></a></small>
             </div>
           </div>
           <div class="method">
@@ -272,13 +272,9 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
 document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
-const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }}), { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
-</body>
-</html>
+const obs = new 
